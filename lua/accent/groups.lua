@@ -110,6 +110,13 @@ M.setup = function(config)
     Special = vim.tbl_extend('force', fg_c, bg_none),
     Error = vim.tbl_extend('force', fg_b1, bg_red),
 
+    -- Diagnostic
+    DiagnosticInfo = { fg = colors.cyan.fg },
+    DiagnosticError = { fg = colors.red.fg },
+    DiagnosticOk = { fg = colors.green.fg },
+    DiagnosticHint = { fg = colors.blue.fg },
+    DiagnosticWarn = { fg = colors.yellow.fg },
+
     -- Diff highlights
     DiffAdd = { fg = colors.green.fg },
     DiffDelete = { fg = colors.red.fg },
