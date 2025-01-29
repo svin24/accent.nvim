@@ -109,6 +109,7 @@ M.setup = function(config)
     Underlined = { underline = true },
     Special = vim.tbl_extend('force', fg_c, bg_none),
     Error = vim.tbl_extend('force', fg_b1, bg_red),
+    Changed = { fg = colors.cyan.fg },
 
     -- Diagnostic
     DiagnosticInfo = { fg = colors.cyan.fg },
