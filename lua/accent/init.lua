@@ -48,6 +48,7 @@ M.load = function()
 end
 
 -- Utility functions
+-- Lua5.1 has no bitwise XOR operations
 M.bxor = function(a, b)
   local result = 0
   local bitval = 1

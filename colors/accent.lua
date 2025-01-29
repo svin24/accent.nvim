@@ -1,1 +1,1 @@
-require("accent").load()
+require('accent').load()
