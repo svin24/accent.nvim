@@ -8,7 +8,7 @@ https://github.com/Alligator/accent.vim
 ```lua
 
 return {
-  dir = vim.fn.expand '$HOME' .. '/Source/accent.nvim/',
+  'svin24/accent.nvim',
   config = function()
     require('accent').setup {
       -- color to use
