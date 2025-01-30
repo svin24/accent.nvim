@@ -1,17 +1,24 @@
 # Accent.nvim, based on accent.vim
-https://github.com/Alligator/accent.vim
 
-(also includes light mode)
+## Features
+
+- [x] Light mode
+- [x] Random Accent Color
+- [ ] Custom Accent Color
+- [ ] Compatibility with more plugins
 
 ## Installation
 
+<details>
+
+Lazy:
 ```lua
 
 return {
   'svin24/accent.nvim',
   config = function()
     require('accent').setup {
-      -- color to use
+      -- color to use, removing this line uses a random accent color
       accent_color = 'orange',
 
       -- makes the background and some text colours darker.
@@ -30,7 +37,9 @@ return {
   end,
 }
 ```
+</details>
 
-## Future Goals
+I don't know how to use other package managers that well, if anyone here knows how to use them, then I am happy to add instructions
+## Credits
 
-- [ ] compatibility with more plugins
+Alligator for the original accent.vim: https://github.com/Alligator/accent.vim
