@@ -1,5 +1,7 @@
 local M = {}
 
+local color_order = { 'red', 'orange', 'green', 'yellow', 'blue', 'magenta', 'cyan' }
+
 M.config = {
   accent_colors = {
     red = { fg = '#e06c75', bg = '#b04c55', ctermfg = 167, ctermbg = 131 },
@@ -19,6 +21,8 @@ M.config = {
 M.setup = function(config)
   M.config = vim.tbl_deep_extend('force', M.config, config or {})
 
+  -- Priority:
+  -- Custom Color -> Accent Color -> CWD Color -> Random Accent Color
   -- Handle custom accent color
   if M.config.custom_accent then
     M.config.accent_colors.custom = M.config.custom_accent
@@ -26,19 +30,19 @@ M.setup = function(config)
     M.config.custom_accent = nil
   end
 
-  -- random accent color when no color is selected
-  if not M.config.accent_color then
-    local color_names = vim.tbl_keys(M.config.accent_colors)
-    local index = math.random(1, #color_names)
-    M.config.accent_color = color_names[index]
-  end
-
-  if M.config.auto_cwd_color then
+  -- color based on cwd
+  if M.config.auto_cwd_color and not M.config.accent_color then
     local cwd = vim.fn.getcwd()
     local hash = require('accent').fnv1a(cwd)
-    local color_names = vim.tbl_keys(M.config.accent_colors)
-    local index = (hash % #color_names) + 1
-    M.config.accent_color = color_names[index]
+    local index = (hash % #color_order) + 1
+    M.config.accent_color = color_order[index]
+  end
+
+  -- random accent color when no color is selected
+  if not M.config.accent_color and not M.config.auto_cwd_color then
+    math.randomseed(os.time())
+    local index = math.random(1, #color_order)
+    M.config.accent_color = color_order[index]
   end
 end
 
