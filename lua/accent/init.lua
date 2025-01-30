@@ -1,7 +1,6 @@
 local M = {}
 
 M.config = {
-  accent_color = 'yellow',
   accent_colors = {
     red = { fg = '#e06c75', bg = '#b04c55', ctermfg = 167, ctermbg = 131 },
     orange = { fg = '#ee9360', bg = '#b66930', ctermfg = 173, ctermbg = 166 },
@@ -19,6 +18,13 @@ M.config = {
 
 M.setup = function(config)
   M.config = vim.tbl_deep_extend('force', M.config, config or {})
+
+  -- random accent color when no color is selected
+  if not M.config.accent_color then
+    local color_names = vim.tbl_keys(M.config.accent_colors)
+    local index = math.random(1, #color_names)
+    M.config.accent_color = color_names[index]
+  end
 
   if M.config.auto_cwd_color then
     local cwd = vim.fn.getcwd()
