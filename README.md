@@ -1,5 +1,7 @@
 # Accent.nvim, based on accent.vim
 
+![](./showcase.gif)
+
 ## Features
 
 - [x] Light mode
