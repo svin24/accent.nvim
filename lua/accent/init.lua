@@ -19,6 +19,13 @@ M.config = {
 M.setup = function(config)
   M.config = vim.tbl_deep_extend('force', M.config, config or {})
 
+  -- Handle custom accent color
+  if M.config.custom_accent then
+    M.config.accent_colors.custom = M.config.custom_accent
+    M.config.accent_color = 'custom'
+    M.config.custom_accent = nil
+  end
+
   -- random accent color when no color is selected
   if not M.config.accent_color then
     local color_names = vim.tbl_keys(M.config.accent_colors)
